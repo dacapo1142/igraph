@@ -3,7 +3,7 @@
 
 Welcome to CSCLAB's fork of igraph C core.
 
-This repository contains a patched version multilevel function (a.k.a. the fast unfolding algorithm). The function is speeding up by removing all the quicksorts called. By doing so, the multilevel function is now a near linear time algorithm. Due to the different iteration order and the id relabeling order, ties will be broken in a different way. Hence, the behavior of our fast unfolding algorithm is not strictly the same as the function in the original igraph, e.g., the result of test no.177 in `make check` of our algorithm is different from the original one.
+This repository contains a patched version multilevel function (a.k.a. the fast unfolding algorithm). The function is speeding up by removing all the quicksorts called. By doing so, the multilevel function is now a near linear time algorithm. Due to the different iteration order and the id relabeling order, ties will be broken in a different way. Hence, the behavior of our fast unfolding algorithm is not strictly the same as the function in the original igraph, e.g., the result of **test 177** in `make check` of our algorithm is different from the result of the original one.
 
 ## Performance Comparison
 The time complexity of the multilevel function is improved from **O(k⋅m⋅log m)** to **O(k⋅m)**, where m is the number of edges and k is the depth of recursive calls (which is supposed to be in the order of log(m) ).
