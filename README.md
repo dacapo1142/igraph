@@ -1,11 +1,9 @@
 
-[![](https://travis-ci.org/igraph/igraph.svg?branch=master)](https://travis-ci.org/igraph/igraph)
-
 # The igraph library
 
 Welcome to CSCLAB's fork of igraph C core.
 
-This repository contains a patched version multilevel function (a.k.a. the fast unfolding algorithm). The function is speeding up by removing all the quicksorts called. By doing so, the multilevel function is now a near linear time algorithm. Due to the different iteration order and the id relabeling order, ties will be broken in another way. Hence, the behavior of our fast unfolding algorithm is not strictly the same as the function in the original igraph.
+This repository contains a patched version multilevel function (a.k.a. the fast unfolding algorithm). The function is speeding up by removing all the quicksorts called. By doing so, the multilevel function is now a near linear time algorithm. Due to the different iteration order and the id relabeling order, ties will be broken in a different way. Hence, the behavior of our fast unfolding algorithm is not strictly the same as the function in the original igraph, e.g., the result of test no.177 in `make check` of our algorithm is different from the original one.
 
 ## Performance Comparison
 The time complexity of the multilevel function is improved from **O(k⋅m⋅log m)** to **O(k⋅m)**, where m is the number of edges and k is the depth of recursive calls (which is supposed to be in the order of log(m) ).
@@ -50,6 +48,13 @@ The time complexity of the multilevel function is improved from **O(k⋅m⋅log 
   elapse time: 3401.65 miliseconds
   ```
 
+## Prerequisite
+- build-essential
+- python-dev
+- libxml2-dev
+- zlib1g-dev
+- libgmp3-dev
+
 ## Installation
 
 The installation steps are the same as in the original igraph.
@@ -73,3 +78,11 @@ Note that the path variable may variate in different OS:
   ```console
   export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/{YOUR WORKSPACE PATH}/igraph/src/.libs
   ```
+
+## Installation (Python)
+
+It is recommended to install python wrapper under virtual environment.
+
+```console
+$ pip install https://github.com/igraph/python-igraph/archive/master.zip --global-option="--c-core-url=https://github.com/dacapo1142/igraph/archive/master.tar.gz"
+```
